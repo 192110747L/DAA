@@ -1,0 +1,36 @@
+#include <stdio.h>
+void generateSubsets(int arr[], int subset[], int index, int n) 
+{
+    if (index == n) 
+	{
+        printf("{ ");
+        for (int i = 0; i < n; i++) 
+		{
+            if (subset[i] == 1) 
+			{
+                printf("%d ", arr[i]);
+            }
+        }
+        printf("}\n");
+        return;
+    }
+    subset[index] = 0;
+    generateSubsets(arr, subset, index + 1, n);
+    subset[index] = 1;
+    generateSubsets(arr, subset, index + 1, n);
+}
+int main()
+ {
+    int n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    int arr[n];
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) 
+	{
+        scanf("%d", &arr[i]);
+    }
+    int subset[n];
+    generateSubsets(arr, subset, 0, n);
+    return 0;
+}
