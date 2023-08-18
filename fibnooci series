@@ -1,0 +1,26 @@
+#include <stdio.h>
+unsigned long long evenFibonacciSum(unsigned long long limit) {
+    if (limit < 2) {
+        return 0;
+    }
+    unsigned long long sum = 0;
+    unsigned long long fib1 = 1;
+    unsigned long long fib2 = 2;
+    while (fib2 <= limit) {
+        if (fib2 % 2 == 0) {
+            sum += fib2;
+        }
+        unsigned long long nextFib = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = nextFib;
+    }
+    return sum;
+}
+int main() {
+    unsigned long long N;
+    printf("Enter the value of N: ");
+    scanf("%llu", &N);
+    unsigned long long sum = evenFibonacciSum(N);
+    printf("Sum of even Fibonacci numbers up to %llu: %llu\n", N, sum);
+    return 0;
+}
